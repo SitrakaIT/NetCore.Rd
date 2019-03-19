@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCore.Rd.Core\NetCore.Rd.Core.csproj" />
+    <ProjectReference Include="..\NetCore.Rd.Data\NetCore.Rd.Data.csproj" />
+    <ProjectReference Include="..\NetCore.Rd.Repository\NetCore.Rd.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
