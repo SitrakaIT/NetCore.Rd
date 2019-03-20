@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,23 +22,6 @@ namespace NetCore.Rd.Web
         }
 
         public IConfiguration _Configuration { get; }
-        public DbContextOptions<ApplicationContext> _BuildOptions
-        {
-            get
-            {
-                DbContextOptionsBuilder<ApplicationContext> build = new DbContextOptionsBuilder<ApplicationContext>();
-                return build.UseSqlServer(_Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("NetCore.Rd.Web"))
-                        .UseLoggerFactory(_MyLoggerFactory)
-                        .Options;
-            }
-        }
-        public ApplicationContext ContextInstance
-        {
-            get
-            {
-                return new ApplicationContext(_BuildOptions);
-            }
-        }
 
         public static readonly LoggerFactory _MyLoggerFactory
             = new LoggerFactory(new[]
@@ -57,22 +40,24 @@ namespace NetCore.Rd.Web
                 }
             );
             //services.AddMvc().AddXmlSerializerFormatters();
-            services.AddDbContext<ApplicationContext>(options => options
+            services.AddDbContext<ApplicationContext>(options => {
+                options
                 .UseSqlServer(_Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("NetCore.Rd.Web"))
-                .UseLoggerFactory(_MyLoggerFactory));
+                .UseLoggerFactory(_MyLoggerFactory);
+            }, ServiceLifetime.Singleton);
 
-            services.AddTransient<IApartmentBusiness, ApartmentBusiness>();
-            services.AddTransient<IApartmentRepository, ApartmentRepository>();
+            services.AddSingleton<IApartmentBusiness, ApartmentBusiness>();
+            services.AddSingleton<IApartmentRepository, ApartmentRepository>();
 
             services.AddSingleton<IOwnerBusiness, OwnerBusiness>();
-            services.AddSingleton<IOwnerRepository, OwnerRepository>(_ => new OwnerRepository(ContextInstance));
+            services.AddSingleton<IOwnerRepository, OwnerRepository>();
             // Data Mapper
             services.AddAutoMapper();
             // CORS
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:3000"));
+                    builder => builder.WithOrigins("http://localhost:4200"));
             });
 
             // Data Protection
