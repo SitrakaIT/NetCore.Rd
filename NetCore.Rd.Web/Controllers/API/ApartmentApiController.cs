@@ -184,5 +184,21 @@ namespace NetCore.Rd.Web.Controllers.API
             }
         }
 
+        [HttpGet]
+        [Route("~/api/apartment/{name}")]
+        public async Task<IActionResult> FindByName([FromRoute] string name)
+        {
+            try
+            {
+                var res = await _apartmentBusiness.QueryBySP("ApartmentResearchPerOwners", Tuple.Create("@ApartmentName", name));
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+                throw;
+            }
+        }
+
     }
 }

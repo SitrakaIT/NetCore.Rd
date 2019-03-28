@@ -18,8 +18,8 @@
   <ItemGroup>
     <ProjectReference Include="..\NetCore.Rd.Core\NetCore.Rd.Core.csproj" />
     <ProjectReference Include="..\NetCore.Rd.Business\NetCore.Rd.Business.csproj" />
-    <ProjectReference Include="..\NetCore.Rd.Repository\NetCore.Rd.Repository.csproj" />
     <ProjectReference Include="..\NetCore.Rd.Data\NetCore.Rd.Data.csproj" />
+    <ProjectReference Include="..\NetCore.Rd.Repository\NetCore.Rd.Repository.csproj" />
   </ItemGroup>
 
 </Project>
