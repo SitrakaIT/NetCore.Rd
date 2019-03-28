@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Rd.Data", "NetCore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Rd.Repository", "NetCore.Rd.Repository\NetCore.Rd.Repository.csproj", "{F300F2EF-2F22-410F-8506-3BBAF7E0C81B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Rd.Helpers", "NetCore.Rd.Helpers\NetCore.Rd.Helpers.csproj", "{AA3DB44F-830B-4332-A708-FF08C4CAA96D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F300F2EF-2F22-410F-8506-3BBAF7E0C81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F300F2EF-2F22-410F-8506-3BBAF7E0C81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F300F2EF-2F22-410F-8506-3BBAF7E0C81B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3DB44F-830B-4332-A708-FF08C4CAA96D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3DB44F-830B-4332-A708-FF08C4CAA96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3DB44F-830B-4332-A708-FF08C4CAA96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3DB44F-830B-4332-A708-FF08C4CAA96D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
