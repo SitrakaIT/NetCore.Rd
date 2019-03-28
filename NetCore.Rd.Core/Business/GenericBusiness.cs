@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NetCore.Rd.Core.Repository;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -72,6 +73,11 @@ namespace NetCore.Rd.Core.Business
         public void Dispose()
         {
             _repository.Dispose();
+        }
+
+        public async Task<IEnumerable> QueryBySP(string name, params Tuple<string, string>[] paramCollections)
+        {
+            return await _repository.QueryBySP(name, paramCollections);
         }
 
     }

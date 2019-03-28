@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetCore.Rd.Core.Business
 {
-    public interface IGenericBusiness<TEntity> : IGenericCore<TEntity> where TEntity : class
+    public interface IGenericBusiness<TEntity> : IGenericCore<TEntity>, IGenericTransactCore<TEntity> where TEntity : class
     {
     }
 }
