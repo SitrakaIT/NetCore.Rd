@@ -1,5 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using NetCore.Rd.Helpers.Settings;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -13,7 +19,10 @@ namespace NetCore.Rd.Core.Repository
     {
         protected readonly TContext _context;
 
-        public GenericRepository(TContext context) => _context = context;
+        public GenericRepository(TContext context)
+        {
+            _context = context;
+        }
 
         public virtual TEntity Add(TEntity t)
         {
@@ -112,6 +121,44 @@ namespace NetCore.Rd.Core.Repository
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public async Task<IEnumerable> QueryBySP(string name, params Tuple<string, string>[] paramCollections)
+        {
+            var list = new ArrayList();
+            using (var conn = new SqlConnection(AppConfig.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(name, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                foreach (var item in paramCollections)
+                {
+                    cmd.Parameters.AddWithValue(item.Item1, item.Item2);
+                }
+
+                await conn.OpenAsync();
+
+                SqlDataReader rdr = await cmd.ExecuteReaderAsync();
+
+                while (await rdr.ReadAsync())
+                {
+                    var countReader = rdr.FieldCount;
+                    int i = 0;
+                    SortedList valuePair = new SortedList();
+
+                    while (i < countReader)
+                    {
+                        valuePair.Add(rdr.GetName(i), rdr.GetValue(i));
+                        i++;
+                    }
+                    list.Add(valuePair);
+                }
+
+                conn.Close();
+
+                return list;
+            }
+
         }
 
     }
