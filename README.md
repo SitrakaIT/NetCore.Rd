@@ -40,6 +40,8 @@ Link :
     - Add : ~/api/apartments/create
     - Update : ~/api/apartments/edit/{id}
     - Delete : ~/api/apartments/delete/{id}
+    - SearchByName : ?/api/apartment/{name} where name is string part of apartment name (Query based on stored procedure SP_QueryFind.sql)
+    [Note : Don't forget executing SP_QueryFind.sql file to run SearchByName query link]
     
   - Owner : (List) ~/api/owners
 
