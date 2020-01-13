@@ -1,5 +1,5 @@
 # NetCore.Rd
-A mini-Netcore Research &amp; Development based on SOA architecture
+A mini-Netcore Research &amp; Development
 
 https://github.com/SitrakaIT/NetCore.Rd.git
 
@@ -8,7 +8,7 @@ This project takes in all of basic concept of a solid and efficiency project as 
 We can see there design pattern principles like :
   - Dependency Injection (Built-in service provided in asp.net core)
   - Singleton (Built-in service provided)
-  - Factory Method
+  - Abstract Factory
   - Builder pattern
   
 Also, the project highlights :
@@ -16,7 +16,7 @@ Also, the project highlights :
   - Importance of using IQueryable than IEnumerable in some cases.
   - Best practice for WebAPI return
 
-It relies on services oriented architecture (SOA) including (Core, Business, Repository, Data) and Web Infrastructure (Web).
+It relies on multi-tier architecture including (Core, Business, Repository, Data) and Web Infrastructure (Web).
 
 Clone repository, and after in NetCore.Rd.Web folder change your specific connectionstring database at appsettings.json file.
 Open CLI at the same folder and run the following commands :
